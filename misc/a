@@ -1,0 +1,4 @@
+#!/bin/bash
+gcc -g 1.c
+./a.out $@
+echo -e "\nEnded: " $?
