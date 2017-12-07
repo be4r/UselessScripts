@@ -1,0 +1,2 @@
+#!/bin/bash
+ls --color=auto -l '/proc/'$(ps a | grep "[[:digit:]] \.*/*a.out"| grep -E [[:digit:]]{5} -o)'/fd'
