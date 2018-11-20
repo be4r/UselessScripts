@@ -1,2 +1,8 @@
 #!/bin/bash
+
+if [[ $2 != "-p" ]] && ([[ -z $1 ]] || [[ -z $(file $1 | grep ELF) ]])
+then
+    echo "Not an elf. If u sure, use\nentry <filename> -p" 
+    exit
+fi
 objdump -D $1 | grep $(readelf -h $1 | grep "Entry" | grep "[0123456789abcdef]\+" -o | tail -n 1)
