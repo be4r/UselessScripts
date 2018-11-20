@@ -1,4 +1,9 @@
 #!/bin/bash
-gcc -g 1.c
-./a.out $@
-echo -e "\nEnded: " $?
+#gcc -O2 -Wall -Wno-pointer-sign -std=gnu11 ~/bin/1.c
+g++ -O2 -Wall -std=gnu++0x 1.cpp
+if [[ $? -eq 0 ]]; then 
+    ./a.out $@
+    echo -e "\nEnded: " $?
+else
+    echo ерунду написал, исправляй
+fi
