@@ -1,0 +1,2 @@
+#!/bin/bash
+objdump -D $1 | grep $(readelf -h $1 | grep "Entry" | grep "[0123456789abcdef]\+" -o | tail -n 1)
