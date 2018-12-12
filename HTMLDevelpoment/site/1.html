@@ -1,5 +1,6 @@
 <html>
 <head>
+
 <meta charset="UTF-8"/>
 <script type="text/javascript" src = "input.js"></script>
 <style type="text/css">
@@ -30,7 +31,7 @@
         left: 12px;
         width: 430px;
         height: 175px;
-        background-color: rgba(187,187,255,1);#187=0xbb;
+        background-color: #bbbbff;#rgba(187,187,255,1);#187=0xbb;
         border: 2px solid black;
         border-radius: 40px;
         font-size: 10px;
@@ -101,10 +102,16 @@
             b.className = "video"
             b.controls = true;
             b.id = "vid" + i
-            b.onended = function(){sawp(i, i + 1)}
+            b.onended = function(){sawp(i, i + 1, 1)}
             var src = document.createElement("source");
     ////////////////////////подгрузка видоса
-            src.src = vidar[i][0]
+            var id = 0
+            if (document.cookie.split(i + '=')[1]) {
+                id = document.cookie.split(i + '=')[1].split(';')[0];
+            }
+            src.src = vidar[i][id]
+            document.getElementById(i).style.backgroundImage = "url(" + imgar[i][id] + ")"
+            document.cookie = i + "=1; expires=Thu, 01 Jan 1970 00:00:01 GMT;"
             b.appendChild(src)
             b.style.display = "none";
             vid.appendChild(b);
@@ -141,22 +148,33 @@
             document.getElementById("orig").pause()
         }
     }
-    function sawp(i, j) {
+    function sawp(i, j, play) {
         var tmp = document.getElementById("vid" + j);
         if (i == j) {
+            if (play) {
+                tmp.play()
+            }
             tmp.currentTime = 0
             return
         }
         tmp.style.display = "block";
-        tmp.play()
+        if (play) {
+            tmp.play()
+        }
         tmp = document.getElementById("vid" + i);
         tmp.style.display = "none"
         tmp.pause()
         document.getElementById("num").innerHTML = "Playing video " + j
     }
+    function time0() {
+        for(i = 0; i < n1;i ++) {
+            document.cookie = i+"="+ vidar[i].indexOf(document.getElementById("vid" + i).children[0].src.substr(document.getElementById("vid" + i).children[0].src.lastIndexOf('/') + 1)) +";"
+        }
+        window.location = window.location
+    }
     function choose(e, i) {
         document.getElementById(i);
-        repos(i, e.x);
+ +       repos(i, e.x);
     }
     function repos(id, x) {
         document.getElementById("bg").style.left = -24 + x;
@@ -206,9 +224,10 @@
 <div style = "position: absolute; top: 95%; left: 10%" align="right"><span id = "num">Playing video 0</span>
 <input id = "goto"/><button onclick = "sawp(document.getElementById('num').innerHTML.substr(14), document.getElementById('goto').value);">go to</button>
 <button style="position: relative; left: 30%" onclick = "play()">PLAY/PAUSE</button>
-<button style="position: relative; left: 65%" onclick = "window.location = window.location">reset</button>
-<input id = "file" accept = "video/*" type="file" style = "position: relative; left: 20%" onchange = "document.getElementById('orig').children[0].src = document.getElementById('file').value;document.getElementById('orig').load();"/>
+<button style="position: relative; left: 65%" disabled title = "reset is better, need restart = press F5" onclick = "window.location = window.location">restart</button>
+<button style="position: relative; left: 65%" onclick = "time0();" title="in development">reset</button>
+<input id = "file" accept = "video/*" type="file" style = "position: relative; left: 20%" onchange = "document.getElementById('orig').children[0].src = document.getElementById('file').value.substring(document.getElementById('file').value.lastIndexOf('\\') + 1);document.getElementById('orig').load();"/>
 </div>
-<script>/*catching enter key in input*/document.getElementById("goto").addEventListener("keyup", function (e) {if (e.keyCode == 13) {sawp(document.getElementById('num').innerHTML.substr(14), document.getElementById('goto').value);};});</script>
+<script>/*catching enter key in input*/document.getElementById("goto").addEventListener("keyup", function (e) {if (e.keyCode == 13) {sawp(document.getElementById('num').innerHTML.substr(14), document.getElementById('goto').value, 0);};});</script>
 </body>
 </html>
