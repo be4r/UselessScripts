@@ -32,4 +32,15 @@ LS:
             They gave me dis in Uni, they told it compiles asm. Never tested XD
 
   net:
-    TO BE COUNTINUED...      
+    -auto.sh
+        Put this into cron to increment TTL on load(костыль detected)
+        Helps bypassing some lame firewalls
+    -monitor.sh
+        Creates WiFi adapter interface in monitor mode(simplest way in mint)
+    -net.sh
+        Same as auto, but designed for adjusting router settings
+    -trans.sh
+        Simplest interface allows you to transfer files through network
+    -unicorn
+        If a ICMP ping is allowed, this can be used to tell you a site 
+        that was down is working again.
