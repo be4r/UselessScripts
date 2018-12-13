@@ -4,3 +4,32 @@ Dis contains some scripts to make sure they`re safe
 Also im practicing github :)
 At some point i`ll post c/asm coded excercises and tasks frok MSU CMC
 For now let it be just peace of scripts
+
+
+
+LS:
+  misc:
+    -a1 
+        Shows file descriptors used by process named 'a.out' (def. gcc name)
+    -det.py
+        Calculates Kramers determinant: slowly but surely
+    -draw.sh
+        Progressbar
+    -entry
+        Prints entry point of ELF executable: address and function name
+    -hacker.sh
+        TFW u r Ne0 from M4TR1X - da coolest haxx0r in da history
+    -wut...
+        some /etc/shadow 4lulz
+    =compile:
+        -a
+            Compiles your 1.c/1.cpp file, runs it with given params 
+            and echos End code. Usefull when you are recompiling coding small
+            projects every now and then
+        -asm
+            Same, but does it with 1.asm in .intel_syntax noprefix
+        -build_asm.sh
+            They gave me dis in Uni, they told it compiles asm. Never tested XD
+
+  net:
+    TO BE COUNTINUED...      
