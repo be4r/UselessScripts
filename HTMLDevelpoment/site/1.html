@@ -82,6 +82,21 @@
 </style>
 <script>
     var size = 15, n1 = vidar.length, n2 = vidar[0].length;
+    if (workdir != '') {
+        if (viddir == '') {
+            viddir = workdir;
+        }
+        if (imgdir == '') {
+            imgdir = workdir;
+        }
+        for (i in vidar) {
+            for (j in vidar[i]) {
+                console.log(viddir + '/' + vidar[i][j] + '; ' + imgdir + '/'  + imgar[i][j])
+                vidar[i][j] = viddir + '/' + vidar[i][j];
+                imgar[i][j] = imgdir + '/'  + imgar[i][j];
+            }
+        }
+    }
 
     function init() {
         var t   = document.getElementById("timeline")
@@ -126,6 +141,8 @@
             bg.appendChild(a);
         }
         setTimeout(recount, 230);
+        document.getElementById('orig').children[0].src = origname;
+        document.getElementById('orig').load();
     }
     function recount() {
         var total = 0;
