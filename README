@@ -44,3 +44,16 @@ LS:
     -unicorn
         If a ICMP ping is allowed, this can be used to tell you a site 
         that was down is working again.
+
+  web:
+    -delete.js
+        Script you could run to get rid of annoying ads in your browser.
+        Add this to bookmarks, click it, put your mouse over 
+        /le shitty advertisement/ and double press 'Q' key;
+        If you accomplished your goal, it's possible to disable script
+        by taping 'W' key.
+    -sub.sh
+        Requires: Sublist3r
+        Creates large subdomains list of pointed in ./addr domains
+        Needs r00t to add public DNS-servers, if you think u got 'em 
+        just delete first line of script OR run it without sudo accesss.
